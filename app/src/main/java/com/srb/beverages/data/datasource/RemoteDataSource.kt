@@ -1,4 +1,4 @@
-package com.srb.beverages.data.dataSource
+package com.srb.beverages.data.datasource
 
 import com.srb.beverages.data.network.models.FoodJokeResponse
 import com.srb.beverages.data.network.models.FoodRecipesResponse
