@@ -1,4 +1,4 @@
-package com.srb.beverages
+package com.srb.beverages.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.srb.beverages.R
 import com.srb.beverages.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -24,7 +25,11 @@ class MainActivity : AppCompatActivity() {
 
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.recipesFragment,R.id.favouriteRecipesFragment,R.id.foodJokeFragment))
+        val appBarConfiguration = AppBarConfiguration(setOf(
+            R.id.recipesFragment,
+            R.id.favouriteRecipesFragment,
+            R.id.foodJokeFragment
+        ))
          navController = navHostFragment.navController
         binding.bottomNav.setupWithNavController(navController)
 
