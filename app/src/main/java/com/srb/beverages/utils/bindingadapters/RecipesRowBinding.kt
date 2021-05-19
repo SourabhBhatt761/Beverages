@@ -1,4 +1,4 @@
-package com.srb.beverages.data.bindingadapters
+package com.srb.beverages.utils.bindingadapters
 
 import android.view.View
 import android.widget.ImageView

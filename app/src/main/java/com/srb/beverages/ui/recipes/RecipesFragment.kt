@@ -1,18 +1,20 @@
 package com.srb.beverages.ui.recipes
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.srb.beverages.R
+import androidx.lifecycle.lifecycleScope
 import com.srb.beverages.adapters.RecipesAdapter
 import com.srb.beverages.databinding.FragmentRecipesBinding
 import com.srb.beverages.utils.NetworkResult
 import com.srb.beverages.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @AndroidEntryPoint
 class RecipesFragment : Fragment() {
@@ -29,6 +31,7 @@ class RecipesFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentRecipesBinding.inflate(layoutInflater)
 
+        readDatabase()
 
         return binding.root
     }
@@ -39,6 +42,26 @@ class RecipesFragment : Fragment() {
         binding.shimmerRv.adapter = mAdapter
         showShimmerEffect()
 
+
+    }
+
+    private fun readDatabase() {
+        lifecycleScope.launch {
+            mainViewModel.readRecipes.observe(viewLifecycleOwner, { database ->
+                if (database.isNotEmpty()){
+                    Timber.i("readDatabase called!")
+                    mAdapter.setData(database[0].foodRecipe)
+                    hideShimmerEffect()
+                } else {
+                    requestApiData()
+                }
+            })
+        }
+    }
+
+    private fun requestApiData() {
+
+        Timber.i("api call")
         mainViewModel.getRecipes(mainViewModel.applyQueries())
 
         mainViewModel.recipes.observe(viewLifecycleOwner,{ response ->
@@ -49,6 +72,7 @@ class RecipesFragment : Fragment() {
                 }
                 is NetworkResult.Error -> {
                     hideShimmerEffect()
+                    loadDataFromCache()
                     Toast.makeText(
                         requireContext(),
                         response.message.toString(),
@@ -60,6 +84,17 @@ class RecipesFragment : Fragment() {
                 }
             }
         })
+    }
+
+
+    private fun loadDataFromCache() {
+        lifecycleScope.launch {
+            mainViewModel.readRecipes.observe(viewLifecycleOwner, { database ->
+                if (database.isNotEmpty()) {
+                    mAdapter.setData(database[0].foodRecipe)
+                }
+            })
+        }
     }
 
     private fun showShimmerEffect(){

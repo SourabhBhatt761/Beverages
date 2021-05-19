@@ -25,7 +25,6 @@
     <string name="gluten_free">Gluten Free</string>
     <string name="ketogenic">Ketogenic</string>
     <string name="vegetarian">Vegetarian</string>
-    <string name="vegan">Vegan</string>
     <string name="pescetarian">Pescetarian</string>
     <string name="paleo">Paleo</string>
     <string name="primal">Primal</string>
@@ -45,4 +44,6 @@
 
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </string>
     <string name="share">Share</string>
+    <string name="vegan">Vegan</string>
+    <string name="_100">100</string>
 </resources>

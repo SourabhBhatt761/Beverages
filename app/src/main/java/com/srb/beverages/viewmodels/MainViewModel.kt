@@ -4,10 +4,8 @@ import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.srb.beverages.data.database.RecipesEntity
 import com.srb.beverages.data.network.Repository
 import com.srb.beverages.data.network.models.FoodRecipesResponse
 import com.srb.beverages.utils.Constants.API_KEY
@@ -31,9 +29,21 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
    private val repository : Repository,
-    application: Application
+   application: Application
 ) : AndroidViewModel(application) {
 
+    /** ROOM DATABASE **/
+
+    val readRecipes: LiveData<List<RecipesEntity>> = repository.local.readRecipes().asLiveData()
+
+    private fun insertRecipes(recipesEntity: RecipesEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.insertRecipes(recipesEntity)
+        }
+
+
+
+    /** RETROFIT */
 
     private val _recipes = MutableLiveData<NetworkResult<FoodRecipesResponse>>()
     val recipes : LiveData<NetworkResult<FoodRecipesResponse>> = _recipes
@@ -43,12 +53,18 @@ class MainViewModel @Inject constructor(
             try {
                 val response = repository.remote.getRecipes(queries)
                 _recipes.postValue(handleRecipesResponse(response))
+
             }catch (e : Exception){
                 Timber.e(e)
             }
         }else{
             _recipes.postValue(NetworkResult.Error("No internet Connection"))
         }
+    }
+
+    private fun offlineCacheRecipes(foodRecipe: FoodRecipesResponse) {
+        val recipesEntity = RecipesEntity(foodRecipe)
+        insertRecipes(recipesEntity)
     }
 
     fun applyQueries(): HashMap<String, String> {
@@ -78,8 +94,9 @@ class MainViewModel @Inject constructor(
                 return NetworkResult.Error("Recipes not found.")
             }
             response.isSuccessful -> {
-                val foodRecipes = response.body()
-                return NetworkResult.Success(foodRecipes!!)
+                val foodRecipes = response.body()!!
+                offlineCacheRecipes(foodRecipes)
+                return NetworkResult.Success(foodRecipes)
             }
             else -> {
                 return NetworkResult.Error(response.message())
