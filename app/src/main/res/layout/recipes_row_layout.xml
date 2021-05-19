@@ -10,7 +10,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_margin="4dp"
+        android:padding="4dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -28,12 +28,12 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@color/cardBackgroundColor">
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/recipe_imageView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="140dp"
                     android:layout_height="0dp"
                     loadImageFromUrl = "@{result.image}"
                     android:scaleType="centerCrop"
@@ -76,7 +76,7 @@
                     app:layout_constraintStart_toStartOf="@+id/title_textView"
                     app:layout_constraintTop_toBottomOf="@+id/title_textView" />
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/heart_imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
                     android:id="@+id/heart_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="100"
+                    android:text="@string/_100"
                     setNumberOfLikes ="@{result.aggregateLikes}"
                     android:textAlignment="center"
                     android:textColor="@color/red"
@@ -103,7 +103,7 @@
                     app:layout_constraintStart_toStartOf="@+id/heart_imageView"
                     app:layout_constraintTop_toBottomOf="@+id/heart_imageView" />
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/clock_imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -120,7 +120,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    android:text="100"
+                    android:text="@string/_100"
                     android:textAlignment="center"
                     android:textColor="@color/yellow"
                     app:layout_constraintEnd_toEndOf="@id/clock_imageView"
@@ -128,7 +128,7 @@
                     app:layout_constraintStart_toStartOf="@id/clock_imageView"
                     app:layout_constraintTop_toBottomOf="@+id/clock_imageView" />
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/leaf_imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -144,7 +144,7 @@
                     android:layout_height="wrap_content"
                     applyVeganColor = "@{result.vegan}"
                     android:layout_marginStart="24dp"
-                    android:text="Vegan"
+                    android:text="@string/vegan"
                     android:textAlignment="center"
                     app:layout_constraintEnd_toEndOf="@id/description_textView"
                     app:layout_constraintStart_toEndOf="@+id/clock_textView"
