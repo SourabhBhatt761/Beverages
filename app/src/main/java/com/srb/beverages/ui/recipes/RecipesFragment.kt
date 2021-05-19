@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.srb.beverages.adapters.RecipesAdapter
 import com.srb.beverages.databinding.FragmentRecipesBinding
 import com.srb.beverages.utils.NetworkResult
+import com.srb.beverages.utils.observeOnce
 import com.srb.beverages.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -31,7 +32,7 @@ class RecipesFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentRecipesBinding.inflate(layoutInflater)
 
-        readDatabase()
+        binding.shimmerRv.adapter = mAdapter
 
         return binding.root
     }
@@ -39,15 +40,16 @@ class RecipesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.shimmerRv.adapter = mAdapter
+
         showShimmerEffect()
 
+        readDatabase()
 
     }
 
     private fun readDatabase() {
         lifecycleScope.launch {
-            mainViewModel.readRecipes.observe(viewLifecycleOwner, { database ->
+            mainViewModel.readRecipes.observeOnce(viewLifecycleOwner, { database ->
                 if (database.isNotEmpty()){
                     Timber.i("readDatabase called!")
                     mAdapter.setData(database[0].foodRecipe)
