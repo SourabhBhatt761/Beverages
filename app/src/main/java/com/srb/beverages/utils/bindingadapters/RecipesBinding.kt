@@ -28,7 +28,8 @@ class RecipesBinding {
                 }
                 is TextView ->{
                     view.isVisible = apiResponse is NetworkResult.Error && database.isNullOrEmpty()
-                    view.text = apiResponse?.toString()
+                    view.text = apiResponse?.message
+
                     Timber.i("text view")
                 }
             }

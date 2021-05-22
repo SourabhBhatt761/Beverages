@@ -33,6 +33,23 @@ class RecipesFragment : Fragment() {
         _binding = FragmentRecipesBinding.inflate(layoutInflater)
 
         binding.shimmerRv.adapter = mAdapter
+        binding.lifecycleOwner = this
+        binding.mainViewModel = mainViewModel
+
+
+        binding.shimmerRv.setOnScrollChangeListener(View.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            Timber.i(v.toString())
+            Timber.i(scrollX.toString())
+            Timber.i(scrollY.toString())
+            Timber.i(oldScrollX.toString())
+            Timber.i(oldScrollY.toString())
+
+            if(oldScrollY < 0){
+                binding.recipesFab.hide()
+            }else{
+                binding.recipesFab.show()
+            }
+        })
 
         return binding.root
     }
@@ -70,7 +87,7 @@ class RecipesFragment : Fragment() {
             when (response) {
                 is NetworkResult.Success -> {
                     hideShimmerEffect()
-                    response.data.let { mAdapter.setData(it) }
+                    response.data?.let { mAdapter.setData(it) }
                 }
                 is NetworkResult.Error -> {
                     hideShimmerEffect()
