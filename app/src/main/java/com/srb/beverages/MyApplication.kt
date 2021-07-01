@@ -14,14 +14,15 @@ class MyApplication : Application() {
         super.onCreate()
         setDebugTools()
     }
-
-}
-
-
-private fun setDebugTools() {
-    if (BuildConfig.DEBUG) {
-        Timber.plant(DebugTree())
-    } else {
-        Timber.plant(ReleaseTree())
+    private fun setDebugTools() {
+        if (BuildConfig.DEBUG) {
+            Timber.plant(DebugTree())
+        } else {
+            Timber.plant(ReleaseTree())
+        }
     }
+
 }
+
+
+
