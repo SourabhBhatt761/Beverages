@@ -1,4 +1,4 @@
-package com.srb.beverages.data.network
+package com.srb.beverages.data
 
 import com.srb.beverages.data.source.LocalDataSource
 import com.srb.beverages.data.source.RemoteDataSource

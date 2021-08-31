@@ -9,7 +9,11 @@
         android:id="@+id/recipesFragment"
         android:name="com.srb.beverages.ui.recipes.RecipesFragment"
         android:label="Recipes"
-        tools:layout="@layout/fragment_recipes" />
+        tools:layout="@layout/fragment_recipes" >
+        <action
+            android:id="@+id/action_recipesFragment_to_recipesBottomSheet"
+            app:destination="@id/recipesBottomSheet" />
+    </fragment>
     <fragment
         android:id="@+id/favouriteRecipesFragment"
         android:name="com.srb.beverages.ui.favourites.FavouriteRecipesFragment"
@@ -20,5 +24,13 @@
         android:name="com.srb.beverages.ui.joke.FoodJokeFragment"
         android:label="Joke"
         tools:layout="@layout/fragment_food_joke" />
+    <dialog
+        android:id="@+id/recipesBottomSheet"
+        android:name="com.srb.beverages.ui.recipes.RecipesBottomSheetFragment"
+        android:label="RecipesBottomSheet" >
+        <action
+            android:id="@+id/action_recipesBottomSheet_to_recipesFragment"
+            app:destination="@id/recipesFragment" />
+    </dialog>
 
 </navigation>

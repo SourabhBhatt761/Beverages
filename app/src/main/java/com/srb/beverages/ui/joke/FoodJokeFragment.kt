@@ -5,16 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.srb.beverages.R
+import com.srb.beverages.databinding.FragmentFoodJokeBinding
 
 class FoodJokeFragment : Fragment() {
+
+    private lateinit var _binding : FragmentFoodJokeBinding
+    private val binding get() = _binding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View{
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_food_joke, container, false)
+        _binding = FragmentFoodJokeBinding.inflate(layoutInflater)
+
+
+        return binding.root
     }
 
 

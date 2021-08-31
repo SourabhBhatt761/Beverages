@@ -6,7 +6,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import androidx.lifecycle.*
 import com.srb.beverages.data.database.RecipesEntity
-import com.srb.beverages.data.network.Repository
+import com.srb.beverages.data.Repository
 import com.srb.beverages.data.network.models.FoodRecipesResponse
 import com.srb.beverages.utils.Constants.API_KEY
 import com.srb.beverages.utils.Constants.DEFAULT_RECIPES_NUMBER
@@ -18,8 +18,6 @@ import com.srb.beverages.utils.Constants.QUERY_NUMBER
 import com.srb.beverages.utils.Constants.QUERY_TYPE
 import com.srb.beverages.utils.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -28,8 +26,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-   private val repository : Repository,
-   application: Application
+    private val repository : Repository,
+    application: Application
 ) : AndroidViewModel(application) {
 
     /** ROOM DATABASE **/

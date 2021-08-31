@@ -8,11 +8,15 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
+import com.srb.beverages.R
 import com.srb.beverages.adapters.RecipesAdapter
 import com.srb.beverages.databinding.FragmentRecipesBinding
 import com.srb.beverages.utils.NetworkResult
 import com.srb.beverages.utils.observeOnce
 import com.srb.beverages.viewmodels.MainViewModel
+import com.srb.beverages.viewmodels.RecipesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -24,6 +28,7 @@ class RecipesFragment : Fragment() {
     private val binding get() = _binding
     private val mAdapter by lazy { RecipesAdapter() }
     private val mainViewModel : MainViewModel by viewModels()
+    private val recipesViewModel : RecipesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,19 +42,24 @@ class RecipesFragment : Fragment() {
         binding.mainViewModel = mainViewModel
 
 
-        binding.shimmerRv.setOnScrollChangeListener(View.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+        binding.shimmerRv.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             Timber.i(v.toString())
             Timber.i(scrollX.toString())
             Timber.i(scrollY.toString())
             Timber.i(oldScrollX.toString())
             Timber.i(oldScrollY.toString())
 
-            if(oldScrollY < 0){
+            if (oldScrollY < 0) {
                 binding.recipesFab.hide()
-            }else{
+            } else {
                 binding.recipesFab.show()
             }
-        })
+        }
+
+        binding.recipesFab.setOnClickListener {
+            val directions = RecipesFragmentDirections.actionRecipesFragmentToRecipesBottomSheet()
+            findNavController().navigate(directions)
+        }
 
         return binding.root
     }
