@@ -249,7 +249,6 @@
         </HorizontalScrollView>
 
         <com.google.android.material.button.MaterialButton
-            android:visibility="visible"
             android:id="@+id/apply_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -258,8 +257,9 @@
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="24dp"
             android:text="@string/apply"
-            android:textAllCaps="false"
+            android:backgroundTint="@color/purple_500"
             android:textColor="@color/white"
+            android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -36,7 +36,7 @@ class RecipesViewModel @Inject constructor(
     var networkStatus = false
     var backOnline = false
 
-    private val readMealAndDietType = dataStoreRepository.readMealAndDietType
+    val readMealAndDietType = dataStoreRepository.readMealAndDietType
     val readBackOnline = dataStoreRepository.readBackOnline.asLiveData()
 
     fun saveMealAndDietType(mealType: String, mealTypeId: Int, dietType: String, dietTypeId: Int) =
@@ -54,6 +54,8 @@ class RecipesViewModel @Inject constructor(
         val queries: HashMap<String, String> = HashMap()
 
         viewModelScope.launch {
+
+            //collect is used in Flow classre
             readMealAndDietType.collect { value ->
                 mealType = value.selectedMealType
                 dietType = value.selectedDietType
