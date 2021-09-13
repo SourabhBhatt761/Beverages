@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.srb.beverages.R
 import com.srb.beverages.adapters.RecipesAdapter
 import com.srb.beverages.databinding.FragmentRecipesBinding
@@ -29,6 +30,7 @@ class RecipesFragment : Fragment() {
     private val mAdapter by lazy { RecipesAdapter() }
     private val mainViewModel : MainViewModel by viewModels()
     private val recipesViewModel : RecipesViewModel by viewModels()
+    private val args by navArgs<RecipesFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -77,7 +79,7 @@ class RecipesFragment : Fragment() {
     private fun readDatabase() {
         lifecycleScope.launch {
             mainViewModel.readRecipes.observeOnce(viewLifecycleOwner, { database ->
-                if (database.isNotEmpty()){
+                if (database.isNotEmpty() && !args.backFromBottomSheet){
                     Timber.i("readDatabase called!")
                     mAdapter.setData(database[0].foodRecipe)
                     hideShimmerEffect()
@@ -91,7 +93,7 @@ class RecipesFragment : Fragment() {
     private fun requestApiData() {
 
         Timber.i("api call")
-        mainViewModel.getRecipes(mainViewModel.applyQueries())
+        mainViewModel.getRecipes(recipesViewModel.applyQueries())
 
         mainViewModel.recipes.observe(viewLifecycleOwner,{ response ->
             when (response) {

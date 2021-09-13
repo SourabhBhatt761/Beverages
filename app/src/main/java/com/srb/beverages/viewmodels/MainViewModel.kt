@@ -32,6 +32,7 @@ class MainViewModel @Inject constructor(
 
     /** ROOM DATABASE **/
 
+    //asLiveData is part of Flow, when we want to collect the data from db which returns the value as liveData
     val readRecipes: LiveData<List<RecipesEntity>> = repository.local.readRecipes().asLiveData()
 
     private fun insertRecipes(recipesEntity: RecipesEntity) =

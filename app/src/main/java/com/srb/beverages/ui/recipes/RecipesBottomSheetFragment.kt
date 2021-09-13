@@ -32,6 +32,8 @@ class RecipesBottomSheetFragment : BottomSheetDialogFragment() {
     private var mealTypeChipId = 0
     private var dietTypeChip = DEFAULT_DIET_TYPE
     private var dietTypeChipId = 0
+    private var savedDietTypeChipId = 0
+    private var savedMealTypeChipId = 0
 
     private val recipesViewModel: RecipesViewModel by viewModels()
 
@@ -58,22 +60,12 @@ class RecipesBottomSheetFragment : BottomSheetDialogFragment() {
 
     }
 
-    private fun updateChip(chipId: Int, chipGroup: ChipGroup) {
-        if (chipId != 0) {
-            try {
-                val targetView = chipGroup.findViewById<Chip>(chipId)
-                targetView.isChecked = true
-                chipGroup.requestChildFocus(targetView, targetView)
-            } catch (e: Exception) {
-                Timber.d(e.message.toString())
-            }
-        }
-    }
-
     private fun readDataFromViewModel(){
         recipesViewModel.readMealAndDietType.asLiveData().observe(viewLifecycleOwner, { value ->
             mealTypeChip = value.selectedMealType
             dietTypeChip = value.selectedDietType
+            savedDietTypeChipId = value.selectedDietTypeId
+            savedMealTypeChipId = value.selectedMealTypeId
             updateChip(value.selectedMealTypeId, binding.mealTypeChipGroup)
             updateChip(value.selectedDietTypeId, binding.dietTypeChipGroup)
         })
@@ -97,19 +89,44 @@ class RecipesBottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun applyButtonClickListener() {
         binding.applyBtn.setOnClickListener {
-            recipesViewModel.saveMealAndDietType(
-                mealTypeChip,
-                mealTypeChipId,
-                dietTypeChip,
-                dietTypeChipId
-            )
-        }
 
-//        val action =
-//                RecipesFragmentDirections.actionRecipesFragmentToRecipesBottomSheet()
-//            findNavController().navigate(action)
+            //if we hit the applied button and we didn't changed the chips
+            if (savedDietTypeChipId == dietTypeChipId && savedMealTypeChipId == mealTypeChipId) {
+
+                requireActivity().onBackPressed()
+
+
+            } else {
+
+                recipesViewModel.saveMealAndDietType(
+                    mealTypeChip,
+                    mealTypeChipId,
+                    dietTypeChip,
+                    dietTypeChipId
+                )
+
+                val action =
+                    RecipesBottomSheetFragmentDirections.actionRecipesBottomSheetToRecipesFragment(
+                        true
+                    )
+                findNavController().navigate(action)
+            }
+
+        }
     }
 
+
+    private fun updateChip(chipId: Int, chipGroup: ChipGroup) {
+        if (chipId != 0) {
+            try {
+                val targetView = chipGroup.findViewById<Chip>(chipId)
+                targetView.isChecked = true
+                chipGroup.requestChildFocus(targetView, targetView)
+            } catch (e: Exception) {
+                Timber.d(e.message.toString())
+            }
+        }
+    }
 
 
 
