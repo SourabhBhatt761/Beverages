@@ -58,6 +58,13 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
         }
     }
 
+
+    /*.map is of dataStore , we're producing flow over here and collecting at the time of calling
+     this function
+
+     **Note**
+     .map is not HashMap
+     */
     val readMealAndDietType: Flow<MealAndDietType> = dataStore.data
         .catch { exception ->
             if (exception is IOException) {
@@ -78,6 +85,7 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
                 selectedDietTypeId
             )
         }
+
 
     val readBackOnline: Flow<Boolean> = dataStore.data
         .catch { exception ->

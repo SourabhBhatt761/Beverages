@@ -55,7 +55,7 @@ class RecipesViewModel @Inject constructor(
 
         viewModelScope.launch {
 
-            //collect is used in Flow classre
+            //collect is used in Flow class
             readMealAndDietType.collect { value ->
                 mealType = value.selectedMealType
                 dietType = value.selectedDietType
@@ -94,5 +94,7 @@ class RecipesViewModel @Inject constructor(
             }
         }
     }
+
+
 
 }

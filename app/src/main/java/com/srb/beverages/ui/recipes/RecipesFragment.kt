@@ -1,6 +1,7 @@
 package com.srb.beverages.ui.recipes
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,17 +9,17 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.srb.beverages.R
 import com.srb.beverages.adapters.RecipesAdapter
 import com.srb.beverages.databinding.FragmentRecipesBinding
+import com.srb.beverages.utils.NetworkListener
 import com.srb.beverages.utils.NetworkResult
 import com.srb.beverages.utils.observeOnce
 import com.srb.beverages.viewmodels.MainViewModel
 import com.srb.beverages.viewmodels.RecipesViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -31,6 +32,7 @@ class RecipesFragment : Fragment() {
     private val mainViewModel : MainViewModel by viewModels()
     private val recipesViewModel : RecipesViewModel by viewModels()
     private val args by navArgs<RecipesFragmentArgs>()
+    private lateinit var networkListener: NetworkListener
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,11 +41,22 @@ class RecipesFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentRecipesBinding.inflate(layoutInflater)
 
+        Timber.i("fn called")
+
         binding.shimmerRv.adapter = mAdapter
         binding.lifecycleOwner = this
         binding.mainViewModel = mainViewModel
 
 
+        lifecycleScope.launch {
+            networkListener = NetworkListener()
+            networkListener.checkNetworkAvailability(requireContext())
+                .collect {
+                    Timber.i(it.toString())
+                }
+        }
+
+        //to hide the fab and bottom navigation on navigation up
         binding.shimmerRv.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             Timber.i(v.toString())
             Timber.i(scrollX.toString())
@@ -95,7 +108,7 @@ class RecipesFragment : Fragment() {
         Timber.i("api call")
         mainViewModel.getRecipes(recipesViewModel.applyQueries())
 
-        mainViewModel.recipes.observe(viewLifecycleOwner,{ response ->
+        mainViewModel.apiRecipes.observe(viewLifecycleOwner,{ response ->
             when (response) {
                 is NetworkResult.Success -> {
                     hideShimmerEffect()

@@ -45,7 +45,7 @@ class MainViewModel @Inject constructor(
     /** RETROFIT */
 
     private val _recipes = MutableLiveData<NetworkResult<FoodRecipesResponse>>()
-    val recipes : LiveData<NetworkResult<FoodRecipesResponse>> = _recipes
+    val apiRecipes : LiveData<NetworkResult<FoodRecipesResponse>> = _recipes
 
     fun getRecipes(queries : Map<String,String>) = viewModelScope.launch(Dispatchers.IO) {
         if (hasInternetConnection()){
@@ -102,9 +102,6 @@ class MainViewModel @Inject constructor(
             }
         }
     }
-
-
-
 
 
     private fun hasInternetConnection(): Boolean {
