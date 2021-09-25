@@ -26,11 +26,11 @@ import timber.log.Timber
 @AndroidEntryPoint
 class RecipesFragment : Fragment() {
 
-    private lateinit var _binding : FragmentRecipesBinding
+    private lateinit var _binding: FragmentRecipesBinding
     private val binding get() = _binding
     private val mAdapter by lazy { RecipesAdapter() }
-    private val mainViewModel : MainViewModel by viewModels()
-    private val recipesViewModel : RecipesViewModel by viewModels()
+    private val mainViewModel: MainViewModel by viewModels()
+    private val recipesViewModel: RecipesViewModel by viewModels()
     private val args by navArgs<RecipesFragmentArgs>()
     private lateinit var networkListener: NetworkListener
 
@@ -47,12 +47,17 @@ class RecipesFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.mainViewModel = mainViewModel
 
+        recipesViewModel.readBackOnline.observe(viewLifecycleOwner, {
+            recipesViewModel.backOnline = it
+        })
 
-        lifecycleScope.launch {
+        lifecycleScope.launchWhenStarted {
             networkListener = NetworkListener()
             networkListener.checkNetworkAvailability(requireContext())
-                .collect {
-                    Timber.i(it.toString())
+                .collect { status ->
+                    recipesViewModel.networkStatus = status
+                    recipesViewModel.showNetworkStatus()
+                    readDatabase()
                 }
         }
 
@@ -72,8 +77,13 @@ class RecipesFragment : Fragment() {
         }
 
         binding.recipesFab.setOnClickListener {
-            val directions = RecipesFragmentDirections.actionRecipesFragmentToRecipesBottomSheet()
-            findNavController().navigate(directions)
+            if (recipesViewModel.networkStatus) {
+                val directions =
+                    RecipesFragmentDirections.actionRecipesFragmentToRecipesBottomSheet()
+                findNavController().navigate(directions)
+            } else {
+                recipesViewModel.showNetworkStatus()
+            }
         }
 
         return binding.root
@@ -92,7 +102,7 @@ class RecipesFragment : Fragment() {
     private fun readDatabase() {
         lifecycleScope.launch {
             mainViewModel.readRecipes.observeOnce(viewLifecycleOwner, { database ->
-                if (database.isNotEmpty() && !args.backFromBottomSheet){
+                if (database.isNotEmpty() && !args.backFromBottomSheet) {
                     Timber.i("readDatabase called!")
                     mAdapter.setData(database[0].foodRecipe)
                     hideShimmerEffect()
@@ -108,7 +118,7 @@ class RecipesFragment : Fragment() {
         Timber.i("api call")
         mainViewModel.getRecipes(recipesViewModel.applyQueries())
 
-        mainViewModel.apiRecipes.observe(viewLifecycleOwner,{ response ->
+        mainViewModel.apiRecipes.observe(viewLifecycleOwner, { response ->
             when (response) {
                 is NetworkResult.Success -> {
                     hideShimmerEffect()
@@ -141,11 +151,11 @@ class RecipesFragment : Fragment() {
         }
     }
 
-    private fun showShimmerEffect(){
+    private fun showShimmerEffect() {
         binding.shimmerRv.showShimmer()
     }
 
-    private fun hideShimmerEffect(){
+    private fun hideShimmerEffect() {
         binding.shimmerRv.hideShimmer()
     }
 }
