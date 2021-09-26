@@ -1,16 +1,15 @@
 package com.srb.beverages.ui.recipes
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.srb.beverages.R
 import com.srb.beverages.adapters.RecipesAdapter
 import com.srb.beverages.databinding.FragmentRecipesBinding
 import com.srb.beverages.utils.NetworkListener
@@ -24,7 +23,7 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 
 @AndroidEntryPoint
-class RecipesFragment : Fragment() {
+class RecipesFragment : Fragment(),SearchView.OnQueryTextListener {
 
     private lateinit var _binding: FragmentRecipesBinding
     private val binding get() = _binding
@@ -41,12 +40,21 @@ class RecipesFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentRecipesBinding.inflate(layoutInflater)
 
-        Timber.i("fn called")
 
-        binding.shimmerRv.adapter = mAdapter
+        //necessary for data binding
         binding.lifecycleOwner = this
         binding.mainViewModel = mainViewModel
 
+
+        //setting up the adapter
+        binding.shimmerRv.adapter = mAdapter
+
+
+        //setting up the searchBar
+        setHasOptionsMenu(true)
+
+
+        //network listener class
         recipesViewModel.readBackOnline.observe(viewLifecycleOwner, {
             recipesViewModel.backOnline = it
         })
@@ -60,6 +68,7 @@ class RecipesFragment : Fragment() {
                     readDatabase()
                 }
         }
+
 
         //to hide the fab and bottom navigation on navigation up
         binding.shimmerRv.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
@@ -97,6 +106,28 @@ class RecipesFragment : Fragment() {
 
         readDatabase()
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+
+        inflater.inflate(R.menu.recipes_menu,menu)
+
+
+        val search = menu.findItem(R.id.menu_search)
+        val searchView = search.actionView as? SearchView
+        searchView?.isSubmitButtonEnabled = true
+        searchView?.setOnQueryTextListener(this)
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if(query != null){
+            searchApiData(query)
+        }
+        return true
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        return true
     }
 
     private fun readDatabase() {
@@ -141,6 +172,32 @@ class RecipesFragment : Fragment() {
     }
 
 
+    private fun searchApiData(searchQuery : String){
+        showShimmerEffect()
+        mainViewModel.searchRecipes(recipesViewModel.applySearchQuery(searchQuery))
+        mainViewModel.searchRecipes.observe(viewLifecycleOwner, { response ->
+            when (response) {
+                is NetworkResult.Success -> {
+                    hideShimmerEffect()
+                    val foodRecipe = response.data
+                    foodRecipe?.let { mAdapter.setData(it) }
+                }
+                is NetworkResult.Error -> {
+                    hideShimmerEffect()
+                    loadDataFromCache()
+                    Toast.makeText(
+                        requireContext(),
+                        response.message.toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                is NetworkResult.Loading -> {
+                    showShimmerEffect()
+                }
+            }
+        })
+    }
+
     private fun loadDataFromCache() {
         lifecycleScope.launch {
             mainViewModel.readRecipes.observe(viewLifecycleOwner, { database ->
@@ -158,4 +215,6 @@ class RecipesFragment : Fragment() {
     private fun hideShimmerEffect() {
         binding.shimmerRv.hideShimmer()
     }
+
+
 }

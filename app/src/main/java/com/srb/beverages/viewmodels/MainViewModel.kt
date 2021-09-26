@@ -46,18 +46,43 @@ class MainViewModel @Inject constructor(
 
     private val _recipes = MutableLiveData<NetworkResult<FoodRecipesResponse>>()
     val apiRecipes : LiveData<NetworkResult<FoodRecipesResponse>> = _recipes
+    private val _searchRecipes = MutableLiveData<NetworkResult<FoodRecipesResponse>>()
+    val searchRecipes : LiveData<NetworkResult<FoodRecipesResponse>> = _searchRecipes
+
 
     fun getRecipes(queries : Map<String,String>) = viewModelScope.launch(Dispatchers.IO) {
+        _recipes.postValue(NetworkResult.Loading())
         if (hasInternetConnection()){
             try {
                 val response = repository.remote.getRecipes(queries)
                 _recipes.postValue(handleRecipesResponse(response))
 
+                val foodRecipes = _recipes.value!!.data
+                if(foodRecipes!=null){
+                    offlineCacheRecipes(foodRecipes)
+                }
             }catch (e : Exception){
                 Timber.e(e)
+                _recipes.postValue(NetworkResult.Error("Recipes not found"))
             }
         }else{
             _recipes.postValue(NetworkResult.Error("No internet Connection"))
+        }
+    }
+
+    fun searchRecipes(searchQuery : Map<String,String>) = viewModelScope.launch(Dispatchers.IO) {
+        _searchRecipes.postValue(NetworkResult.Loading())
+        if (hasInternetConnection()){
+            try {
+                val response = repository.remote.searchRecipes(searchQuery)
+                _searchRecipes.postValue(handleRecipesResponse(response))
+
+            }catch (e : Exception){
+                Timber.e(e)
+                _searchRecipes.postValue(NetworkResult.Error("Recipes not found"))
+            }
+        }else{
+            _searchRecipes.postValue(NetworkResult.Error("No internet Connection"))
         }
     }
 
@@ -65,21 +90,6 @@ class MainViewModel @Inject constructor(
         val recipesEntity = RecipesEntity(foodRecipe)
         insertRecipes(recipesEntity)
     }
-
-    fun applyQueries(): HashMap<String, String> {
-        val queries: HashMap<String, String> = HashMap()
-
-        queries[QUERY_NUMBER] = DEFAULT_RECIPES_NUMBER
-        queries[QUERY_API_KEY] = API_KEY
-        queries[QUERY_TYPE] = "snack"
-        queries[QUERY_DIET] = "vegan"
-        queries[QUERY_ADD_RECIPE_INFORMATION] = "true"
-        queries[QUERY_FILL_INGREDIENTS] = "true"
-
-        return queries
-    }
-
-
 
     private fun handleRecipesResponse(response: Response<FoodRecipesResponse>): NetworkResult<FoodRecipesResponse>{
         when {
@@ -94,7 +104,6 @@ class MainViewModel @Inject constructor(
             }
             response.isSuccessful -> {
                 val foodRecipes = response.body()!!
-                offlineCacheRecipes(foodRecipes)
                 return NetworkResult.Success(foodRecipes)
             }
             else -> {
