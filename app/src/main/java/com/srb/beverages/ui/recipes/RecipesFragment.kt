@@ -104,7 +104,7 @@ class RecipesFragment : Fragment(),SearchView.OnQueryTextListener {
 
         showShimmerEffect()
 
-        readDatabase()
+         readDatabase()
 
     }
 
