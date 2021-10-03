@@ -1,4 +1,4 @@
-package com.srb.beverages.ui.recipes
+package com.srb.beverages.ui.fragments.recipes
 
 import android.os.Bundle
 import android.view.*

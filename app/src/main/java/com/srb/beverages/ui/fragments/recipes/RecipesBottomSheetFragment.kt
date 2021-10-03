@@ -1,18 +1,15 @@
-package com.srb.beverages.ui.recipes
+package com.srb.beverages.ui.fragments.recipes
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
-import com.srb.beverages.R
 import com.srb.beverages.databinding.FragmentReciepesBottomSheetBinding
 import com.srb.beverages.utils.Constants.DEFAULT_DIET_TYPE
 import com.srb.beverages.utils.Constants.DEFAULT_MEAL_TYPE

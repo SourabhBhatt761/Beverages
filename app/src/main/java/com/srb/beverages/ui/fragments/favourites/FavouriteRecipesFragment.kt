@@ -1,4 +1,4 @@
-package com.srb.beverages.ui.favourites
+package com.srb.beverages.ui.fragments.favourites
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

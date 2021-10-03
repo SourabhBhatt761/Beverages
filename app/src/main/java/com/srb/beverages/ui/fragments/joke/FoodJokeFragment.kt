@@ -1,4 +1,4 @@
-package com.srb.beverages.ui.joke
+package com.srb.beverages.ui.fragments.joke
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
