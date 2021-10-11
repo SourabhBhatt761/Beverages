@@ -16,7 +16,8 @@ class PagerAdapter(
     }
 
     override fun createFragment(position: Int): Fragment {
-        fragments[position].arguments = resultBundle
+        fragments[position].arguments = resultBundle                //by this arguments method only we're passing the data
+                                                                    //to the child fragments
         return fragments[position]
     }
 }

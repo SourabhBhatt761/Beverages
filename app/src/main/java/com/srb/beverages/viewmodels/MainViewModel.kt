@@ -7,6 +7,8 @@ import android.net.NetworkCapabilities
 import androidx.lifecycle.*
 import com.srb.beverages.data.database.RecipesEntity
 import com.srb.beverages.data.Repository
+import com.srb.beverages.data.database.FavoritesEntity
+import com.srb.beverages.data.database.FoodJokeEntity
 import com.srb.beverages.data.network.models.FoodRecipesResponse
 import com.srb.beverages.utils.Constants.API_KEY
 import com.srb.beverages.utils.Constants.DEFAULT_RECIPES_NUMBER
@@ -34,11 +36,32 @@ class MainViewModel @Inject constructor(
 
     //asLiveData is part of Flow, when we want to collect the data from db which returns the value as liveData
     val readRecipes: LiveData<List<RecipesEntity>> = repository.local.readRecipes().asLiveData()
+//    val readFavoriteRecipes: LiveData<List<FavoritesEntity>> = repository.local.readFavoriteRecipes().asLiveData()
 
     private fun insertRecipes(recipesEntity: RecipesEntity) =
         viewModelScope.launch(Dispatchers.IO) {
             repository.local.insertRecipes(recipesEntity)
         }
+
+//    fun insertFavoriteRecipe(favoritesEntity: FavoritesEntity) =
+//        viewModelScope.launch(Dispatchers.IO) {
+//            repository.local.insertFavoriteRecipes(favoritesEntity)
+//        }
+//
+//    private fun insertFoodJoke(foodJokeEntity: FoodJokeEntity) =
+//        viewModelScope.launch(Dispatchers.IO) {
+//            repository.local.insertFoodJoke(foodJokeEntity)
+//        }
+//
+//    fun deleteFavoriteRecipe(favoritesEntity: FavoritesEntity) =
+//        viewModelScope.launch(Dispatchers.IO) {
+//            repository.local.deleteFavoriteRecipe(favoritesEntity)
+//        }
+//
+//    fun deleteAllFavoriteRecipes() =
+//        viewModelScope.launch(Dispatchers.IO) {
+//            repository.local.deleteAllFavoriteRecipes()
+//        }
 
 
 

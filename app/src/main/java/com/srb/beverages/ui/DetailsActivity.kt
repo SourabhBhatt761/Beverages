@@ -12,8 +12,16 @@ import androidx.navigation.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import com.srb.beverages.R
+import com.srb.beverages.adapters.PagerAdapter
+import com.srb.beverages.data.database.FavoritesEntity
+import com.srb.beverages.databinding.ActivityDetailsBinding
+import com.srb.beverages.ui.fragments.IngredientsFragment
+import com.srb.beverages.ui.fragments.InstructionsFragment
+import com.srb.beverages.ui.fragments.OverviewFragment
+import com.srb.beverages.utils.Constants.RECIPE_RESULT_KEY
 import com.srb.beverages.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 import java.lang.Exception
 
 @AndroidEntryPoint
@@ -36,7 +44,7 @@ class DetailsActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
         binding.toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white))
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)           //'<-' this arrow will come up to go back to home
 
         val fragments = ArrayList<Fragment>()
         fragments.add(OverviewFragment())
@@ -56,11 +64,12 @@ class DetailsActivity : AppCompatActivity() {
             fragments,
             this
         )
-        binding.viewPager2.isUserInputEnabled = false
+        binding.viewPager2.isUserInputEnabled = false           //to prevent scroll feature.
         binding.viewPager2.apply {
             adapter = pagerAdapter
         }
 
+        //to set the selected tab fragments name
         TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
             tab.text = titles[position]
         }.attach()
@@ -69,7 +78,7 @@ class DetailsActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.details_menu, menu)
         menuItem = menu!!.findItem(R.id.save_to_favorites_menu)
-        checkSavedRecipes(menuItem)
+//        checkSavedRecipes(menuItem)
         return true
     }
 
@@ -77,13 +86,14 @@ class DetailsActivity : AppCompatActivity() {
         if (item.itemId == android.R.id.home) {
             finish()
         } else if (item.itemId == R.id.save_to_favorites_menu && !recipeSaved) {
-            saveToFavorites(item)
+//            saveToFavorites(item)
         } else if (item.itemId == R.id.save_to_favorites_menu && recipeSaved) {
-            removeFromFavorites(item)
+//            removeFromFavorites(item)
         }
         return super.onOptionsItemSelected(item)
     }
 
+/*
     private fun checkSavedRecipes(menuItem: MenuItem) {
         mainViewModel.readFavoriteRecipes.observe(this, { favoritesEntity ->
             try {
@@ -95,12 +105,13 @@ class DetailsActivity : AppCompatActivity() {
                     }
                 }
             } catch (e: Exception) {
-                Log.d("DetailsActivity", e.message.toString())
+                Timber.d(e.message.toString())
             }
         })
     }
+*/
 
-    private fun saveToFavorites(item: MenuItem) {
+   /* private fun saveToFavorites(item: MenuItem) {
         val favoritesEntity =
             FavoritesEntity(
                 0,
@@ -122,7 +133,7 @@ class DetailsActivity : AppCompatActivity() {
         changeMenuItemColor(item, R.color.white)
         showSnackBar("Removed from Favorites.")
         recipeSaved = false
-    }
+    }*/
 
     private fun showSnackBar(message: String) {
         Snackbar.make(
