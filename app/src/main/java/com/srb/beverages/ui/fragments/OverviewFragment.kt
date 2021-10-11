@@ -34,6 +34,8 @@ class OverviewFragment : Fragment() {
         binding.titleTextView.text = myBundle.title
         binding.likesTextView.text = myBundle.aggregateLikes.toString()
         binding.timeTextView.text = myBundle.readyInMinutes.toString()
+
+        //the summary contains text of html tags, to remove them Jsoup library is used.
         RecipesRowBinding.parseHtml(binding.summaryTextView, myBundle.summary)
 
         updateColors(myBundle.vegetarian, binding.vegetarianTextView, binding.vegetarianImageView)
