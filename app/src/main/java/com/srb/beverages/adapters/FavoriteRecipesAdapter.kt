@@ -62,7 +62,7 @@ class FavoriteRecipesAdapter(
         /**
          * Single Click Listener
          * */
-        holder.binding.favoriteRecipesRowLayout.setOnClickListener {
+        holder.binding.favouriteRowCardView.setOnClickListener {
             if (multiSelection) {
                 applySelection(holder, currentRecipe)
             }
@@ -78,7 +78,7 @@ class FavoriteRecipesAdapter(
         /**
          * Long Click Listener
          * */
-        holder.binding.favoriteRecipesRowLayout.setOnLongClickListener {
+        holder.binding.favouriteRowCardView.setOnLongClickListener {
             if (!multiSelection) {
                 multiSelection = true
                 requireActivity.startActionMode(this)
@@ -114,10 +114,10 @@ class FavoriteRecipesAdapter(
     }
 
     private fun changeRecipeStyle(holder: MyViewHolder, backgroundColor: Int, strokeColor: Int) {
-        holder.binding.favoriteRecipesRowLayout.setBackgroundColor(
-            ContextCompat.getColor(requireActivity, backgroundColor)
-        )
-        holder.binding.favoriteRowCardView.strokeColor =
+//        holder.binding.favoriteRecipesRowLayout.setBackgroundColor(
+//            ContextCompat.getColor(requireActivity, backgroundColor)
+//        )
+        holder.binding.favouriteRowCardView.strokeColor =
             ContextCompat.getColor(requireActivity, strokeColor)
     }
 

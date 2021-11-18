@@ -13,10 +13,8 @@ import coil.load
 import com.srb.beverages.R
 import com.srb.beverages.databinding.FragmentOverviewBinding
 import com.srb.beverages.utils.Constants.RECIPE_RESULT_KEY
-import com.srb.beverages.utils.bindingadapters.RecipesRowBinding
+import com.srb.beverages.adapters.bindingadapters.RecipesRowBinding
 import com.srb.beverages.data.network.models.Result
-import com.srb.beverages.ui.DetailsActivity
-import okio.ByteString.Companion.toByteString
 
 class OverviewFragment : Fragment() {
 

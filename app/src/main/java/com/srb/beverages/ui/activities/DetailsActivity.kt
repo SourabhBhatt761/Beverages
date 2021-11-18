@@ -1,4 +1,4 @@
-package com.srb.beverages.ui
+package com.srb.beverages.ui.activities
 
 import android.os.Bundle
 import android.view.Menu
@@ -62,7 +62,7 @@ class DetailsActivity : AppCompatActivity() {
                 fragments,
                 this
             )
-            binding.viewPager2.isUserInputEnabled = false           //to prevent scroll feature.
+//            binding.viewPager2.isUserInputEnabled = false           //to prevent scroll feature.
             binding.viewPager2.apply {
                 adapter = pagerAdapter
             }

@@ -1,4 +1,4 @@
-package com.srb.beverages.ui
+package com.srb.beverages.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

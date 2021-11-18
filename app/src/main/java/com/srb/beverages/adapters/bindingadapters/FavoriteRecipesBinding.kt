@@ -1,4 +1,4 @@
-package com.srb.beverages.utils.bindingadapters
+package com.srb.beverages.adapters.bindingadapters
 
 import android.view.View
 import androidx.core.view.isInvisible

@@ -1,6 +1,5 @@
-package com.srb.beverages.utils.bindingadapters
+package com.srb.beverages.adapters.bindingadapters
 
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView

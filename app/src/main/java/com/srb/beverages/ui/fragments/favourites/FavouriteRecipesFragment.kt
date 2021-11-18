@@ -9,16 +9,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.srb.beverages.R
 import com.srb.beverages.adapters.FavoriteRecipesAdapter
-import com.srb.beverages.databinding.FragmentFavoriteRecipesBinding
+import com.srb.beverages.databinding.FragmentFavouriteRecipesBinding
 import com.srb.beverages.viewmodels.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class FavouriteRecipesFragment : Fragment() {
 
-    /*private val mainViewModel: MainViewModel by viewModels()
+    private val mainViewModel: MainViewModel by viewModels()
     private val mAdapter: FavoriteRecipesAdapter by lazy { FavoriteRecipesAdapter(requireActivity(), mainViewModel) }
 
-    private var _binding: FragmentFavoriteRecipesBinding? = null
+    private var _binding: FragmentFavouriteRecipesBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -26,7 +27,7 @@ class FavouriteRecipesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentFavoriteRecipesBinding.inflate(inflater, container, false)
+        _binding = FragmentFavouriteRecipesBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.mainViewModel = mainViewModel
         binding.mAdapter = mAdapter
@@ -68,6 +69,6 @@ class FavouriteRecipesFragment : Fragment() {
         super.onDestroyView()
         _binding = null
         mAdapter.clearContextualActionMode()
-    }*/
+    }
 
 }

@@ -45,7 +45,7 @@
     </dialog>
     <activity
         android:id="@+id/detailsActivity"
-        android:name="com.srb.beverages.ui.DetailsActivity"
+        android:name="com.srb.beverages.ui.activities.DetailsActivity"
         android:label="Details"
         tools:layout="@layout/activity_details" >
         <argument
