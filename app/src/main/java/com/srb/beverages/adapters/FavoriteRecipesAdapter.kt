@@ -114,9 +114,9 @@ class FavoriteRecipesAdapter(
     }
 
     private fun changeRecipeStyle(holder: MyViewHolder, backgroundColor: Int, strokeColor: Int) {
-//        holder.binding.favoriteRecipesRowLayout.setBackgroundColor(
-//            ContextCompat.getColor(requireActivity, backgroundColor)
-//        )
+        holder.binding.favouriteRowCardView.setBackgroundColor(
+            ContextCompat.getColor(requireActivity, backgroundColor)
+        )
         holder.binding.favouriteRowCardView.strokeColor =
             ContextCompat.getColor(requireActivity, strokeColor)
     }
