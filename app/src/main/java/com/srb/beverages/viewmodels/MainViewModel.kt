@@ -7,6 +7,7 @@ import android.net.NetworkCapabilities
 import androidx.lifecycle.*
 import com.srb.beverages.data.database.entities.RecipesEntity
 import com.srb.beverages.data.Repository
+import com.srb.beverages.data.database.entities.FavoritesEntity
 import com.srb.beverages.data.network.models.FoodRecipesResponse
 import com.srb.beverages.utils.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,34 +25,34 @@ class MainViewModel @Inject constructor(
 
     /** ROOM DATABASE **/
 
-    //asLiveData is part of Flow,this is used when we want to collect the data from db , which allways returns the value as liveData
+    //.asLiveData() is part of Flow,this is used when we want to collect the data from db , which always returns the value as liveData
     val readRecipes: LiveData<List<RecipesEntity>> = repository.local.readRecipes().asLiveData()
-//    val readFavoriteRecipes: LiveData<List<FavoritesEntity>> = repository.local.readFavoriteRecipes().asLiveData()
+    val readFavoriteRecipes: LiveData<List<FavoritesEntity>> = repository.local.readFavoriteRecipes().asLiveData()
 
     private fun insertRecipes(recipesEntity: RecipesEntity) =
         viewModelScope.launch(Dispatchers.IO) {
             repository.local.insertRecipes(recipesEntity)
         }
 
-//    fun insertFavoriteRecipe(favoritesEntity: FavoritesEntity) =
-//        viewModelScope.launch(Dispatchers.IO) {
-//            repository.local.insertFavoriteRecipes(favoritesEntity)
-//        }
-//
+    fun insertFavoriteRecipe(favoritesEntity: FavoritesEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.insertFavoriteRecipes(favoritesEntity)
+        }
+
 //    private fun insertFoodJoke(foodJokeEntity: FoodJokeEntity) =
 //        viewModelScope.launch(Dispatchers.IO) {
 //            repository.local.insertFoodJoke(foodJokeEntity)
 //        }
 //
-//    fun deleteFavoriteRecipe(favoritesEntity: FavoritesEntity) =
-//        viewModelScope.launch(Dispatchers.IO) {
-//            repository.local.deleteFavoriteRecipe(favoritesEntity)
-//        }
-//
-//    fun deleteAllFavoriteRecipes() =
-//        viewModelScope.launch(Dispatchers.IO) {
-//            repository.local.deleteAllFavoriteRecipes()
-//        }
+    fun deleteFavoriteRecipe(favoritesEntity: FavoritesEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.deleteFavoriteRecipe(favoritesEntity)
+        }
+
+    fun deleteAllFavoriteRecipes() =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.deleteAllFavoriteRecipes()
+        }
 
 
 

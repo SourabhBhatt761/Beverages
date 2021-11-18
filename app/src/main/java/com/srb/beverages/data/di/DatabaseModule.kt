@@ -23,7 +23,7 @@ object  DatabaseModule {
         context,
         RecipesDatabase::class.java,
         DATABASE_NAME
-    ).fallbackToDestructiveMigration()
+    )/*.fallbackToDestructiveMigration()*/          //used when we change the version and want to delete the data for the prev. one
         .build()
 
     @Singleton

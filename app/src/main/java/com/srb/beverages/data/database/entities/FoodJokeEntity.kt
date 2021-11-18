@@ -7,7 +7,7 @@ import com.srb.beverages.data.network.models.FoodJokeResponse
 import com.srb.beverages.utils.Constants.FOOD_JOKE_TABLE
 
 @Entity(tableName = FOOD_JOKE_TABLE)
-class FoodJokeEntity(
+data class FoodJokeEntity(
     @Embedded
     var foodJoke: FoodJokeResponse
 ) {

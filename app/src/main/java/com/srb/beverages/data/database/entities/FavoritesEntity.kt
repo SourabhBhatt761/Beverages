@@ -6,7 +6,7 @@ import com.srb.beverages.data.network.models.Result
 import com.srb.beverages.utils.Constants.FAVORITE_RECIPES_TABLE
 
 @Entity(tableName = FAVORITE_RECIPES_TABLE)
-class FavoritesEntity(
+data class FavoritesEntity(
     @PrimaryKey(autoGenerate = true)
     var id: Int,
     var result: Result

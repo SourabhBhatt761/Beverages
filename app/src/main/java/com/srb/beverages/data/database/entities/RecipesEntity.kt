@@ -6,7 +6,7 @@ import com.srb.beverages.data.network.models.FoodRecipesResponse
 import com.srb.beverages.utils.Constants.RECIPES_TABLE
 
 @Entity(tableName = RECIPES_TABLE)
-class RecipesEntity(
+data class RecipesEntity(
     var foodRecipe: FoodRecipesResponse
 ) {
     @PrimaryKey(autoGenerate = false)
