@@ -5,7 +5,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.google.android.material.card.MaterialCardView
-import com.srb.beverages.data.database.FoodJokeEntity
+import com.srb.beverages.data.database.entities.FoodJokeEntity
 import com.srb.beverages.data.network.models.FoodJokeResponse
 import com.srb.beverages.utils.NetworkResult
 

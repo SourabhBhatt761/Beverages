@@ -8,6 +8,7 @@ import com.srb.beverages.data.network.models.FoodRecipesResponse
 import com.srb.beverages.data.network.models.Result
 import com.srb.beverages.databinding.RecipesRowLayoutBinding
 import com.srb.beverages.utils.RecipesDiffUtil
+import com.srb.beverages.utils.bindingadapters.RecipesRowBinding
 
 class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.ViewHolder>() {
 

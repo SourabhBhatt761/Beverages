@@ -5,7 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
-import com.srb.beverages.data.database.RecipesEntity
+import com.srb.beverages.data.database.entities.RecipesEntity
 import com.srb.beverages.data.network.models.FoodRecipesResponse
 import com.srb.beverages.utils.NetworkResult
 import timber.log.Timber

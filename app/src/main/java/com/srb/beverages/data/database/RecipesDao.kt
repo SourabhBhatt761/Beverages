@@ -1,6 +1,8 @@
 package com.srb.beverages.data.database
 
 import androidx.room.*
+import com.srb.beverages.data.database.entities.FavoritesEntity
+import com.srb.beverages.data.database.entities.RecipesEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

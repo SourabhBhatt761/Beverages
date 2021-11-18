@@ -1,4 +1,4 @@
-package com.srb.beverages.ui.fragments
+package com.srb.beverages.ui.fragments.viewPagerFragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

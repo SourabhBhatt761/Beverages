@@ -1,9 +1,7 @@
 package com.srb.beverages.data.source
 
-import com.srb.beverages.data.database.FavoritesEntity
-import com.srb.beverages.data.database.FoodJokeEntity
 import com.srb.beverages.data.database.RecipesDao
-import com.srb.beverages.data.database.RecipesEntity
+import com.srb.beverages.data.database.entities.RecipesEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

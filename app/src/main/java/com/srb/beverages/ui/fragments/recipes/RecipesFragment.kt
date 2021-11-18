@@ -1,6 +1,7 @@
 package com.srb.beverages.ui.fragments.recipes
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
@@ -14,6 +15,7 @@ import com.srb.beverages.adapters.RecipesAdapter
 import com.srb.beverages.databinding.FragmentRecipesBinding
 import com.srb.beverages.utils.NetworkListener
 import com.srb.beverages.utils.NetworkResult
+import com.srb.beverages.utils.bindingadapters.RecipesRowBinding
 import com.srb.beverages.utils.observeOnce
 import com.srb.beverages.viewmodels.MainViewModel
 import com.srb.beverages.viewmodels.RecipesViewModel

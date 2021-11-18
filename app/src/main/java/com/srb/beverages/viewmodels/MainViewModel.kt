@@ -5,19 +5,9 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import androidx.lifecycle.*
-import com.srb.beverages.data.database.RecipesEntity
+import com.srb.beverages.data.database.entities.RecipesEntity
 import com.srb.beverages.data.Repository
-import com.srb.beverages.data.database.FavoritesEntity
-import com.srb.beverages.data.database.FoodJokeEntity
 import com.srb.beverages.data.network.models.FoodRecipesResponse
-import com.srb.beverages.utils.Constants.API_KEY
-import com.srb.beverages.utils.Constants.DEFAULT_RECIPES_NUMBER
-import com.srb.beverages.utils.Constants.QUERY_ADD_RECIPE_INFORMATION
-import com.srb.beverages.utils.Constants.QUERY_API_KEY
-import com.srb.beverages.utils.Constants.QUERY_DIET
-import com.srb.beverages.utils.Constants.QUERY_FILL_INGREDIENTS
-import com.srb.beverages.utils.Constants.QUERY_NUMBER
-import com.srb.beverages.utils.Constants.QUERY_TYPE
 import com.srb.beverages.utils.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -34,7 +24,7 @@ class MainViewModel @Inject constructor(
 
     /** ROOM DATABASE **/
 
-    //asLiveData is part of Flow, when we want to collect the data from db which returns the value as liveData
+    //asLiveData is part of Flow,this is used when we want to collect the data from db , which allways returns the value as liveData
     val readRecipes: LiveData<List<RecipesEntity>> = repository.local.readRecipes().asLiveData()
 //    val readFavoriteRecipes: LiveData<List<FavoritesEntity>> = repository.local.readFavoriteRecipes().asLiveData()
 

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.srb.beverages.R
-import com.srb.beverages.data.database.FavoritesEntity
+import com.srb.beverages.data.database.entities.FavoritesEntity
 import com.srb.beverages.databinding.FavoriteRecipesRowLayoutBinding
 import com.srb.beverages.ui.fragments.favourites.FavouriteRecipesFragmentDirections
 import com.srb.beverages.utils.RecipesDiffUtil

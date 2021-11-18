@@ -1,5 +1,6 @@
 package com.srb.beverages.utils.bindingadapters
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -76,7 +77,6 @@ companion object{
     @BindingAdapter("onRecipeClickListener")
     @JvmStatic
     fun onRecipeClickListener(recipeRowLayout: MaterialCardView, result: Result) {
-        Timber.d( "CALLED")
         recipeRowLayout.setOnClickListener {
             try {
                 val action =

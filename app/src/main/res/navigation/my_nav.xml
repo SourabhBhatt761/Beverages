@@ -50,7 +50,9 @@
         tools:layout="@layout/activity_details" >
         <argument
             android:name="result"
-            app:argType="com.srb.beverages.data.network.models.Result" />
+            app:argType="com.srb.beverages.data.network.models.Result"
+            app:nullable="true"
+            android:defaultValue="@null" />
 
     </activity>
 

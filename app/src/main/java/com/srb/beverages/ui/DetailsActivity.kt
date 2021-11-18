@@ -13,16 +13,13 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import com.srb.beverages.R
 import com.srb.beverages.adapters.PagerAdapter
-import com.srb.beverages.data.database.FavoritesEntity
 import com.srb.beverages.databinding.ActivityDetailsBinding
-import com.srb.beverages.ui.fragments.IngredientsFragment
-import com.srb.beverages.ui.fragments.InstructionsFragment
-import com.srb.beverages.ui.fragments.OverviewFragment
+import com.srb.beverages.ui.fragments.viewPagerFragments.IngredientsFragment
+import com.srb.beverages.ui.fragments.viewPagerFragments.InstructionsFragment
+import com.srb.beverages.ui.fragments.viewPagerFragments.OverviewFragment
 import com.srb.beverages.utils.Constants.RECIPE_RESULT_KEY
 import com.srb.beverages.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
-import java.lang.Exception
 
 @AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
@@ -57,22 +54,23 @@ class DetailsActivity : AppCompatActivity() {
         titles.add("Instructions")
 
         val resultBundle = Bundle()
-        resultBundle.putParcelable(RECIPE_RESULT_KEY, args.result)
+        Log.i("uni","dA "+args.result.toString())
+            resultBundle.putParcelable(RECIPE_RESULT_KEY, args.result)
 
-        val pagerAdapter = PagerAdapter(
-            resultBundle,
-            fragments,
-            this
-        )
-        binding.viewPager2.isUserInputEnabled = false           //to prevent scroll feature.
-        binding.viewPager2.apply {
-            adapter = pagerAdapter
-        }
+            val pagerAdapter = PagerAdapter(
+                resultBundle,
+                fragments,
+                this
+            )
+            binding.viewPager2.isUserInputEnabled = false           //to prevent scroll feature.
+            binding.viewPager2.apply {
+                adapter = pagerAdapter
+            }
 
-        //to set the selected tab fragments name
-        TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
-            tab.text = titles[position]
-        }.attach()
+            //to set the selected tab fragments name
+            TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
+                tab.text = titles[position]
+            }.attach()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

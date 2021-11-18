@@ -1,4 +1,4 @@
-package com.srb.beverages.data.database
+package com.srb.beverages.data.database.entities
 
 import androidx.room.Embedded
 import androidx.room.Entity
