@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.srb.beverages.R
 import com.srb.beverages.adapters.RecipesAdapter
 import com.srb.beverages.databinding.FragmentRecipesBinding
+import com.srb.beverages.ui.activities.MainActivity
 import com.srb.beverages.utils.NetworkListener
 import com.srb.beverages.utils.NetworkResult
 import com.srb.beverages.utils.observeOnce
@@ -70,7 +74,7 @@ class RecipesFragment : Fragment(),SearchView.OnQueryTextListener {
         }
 
 
-        //to hide the fab and bottom navigation on navigation up
+        //to hide the fab on scroll
         binding.shimmerRv.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             Timber.i(v.toString())
             Timber.i(scrollX.toString())

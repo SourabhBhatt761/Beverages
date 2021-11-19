@@ -1,11 +1,16 @@
 package com.srb.beverages.adapters
 
+import android.app.ActionBar
+import android.util.Log
 import android.view.*
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.view.marginBottom
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.snackbar.Snackbar
 import com.srb.beverages.R
 import com.srb.beverages.data.database.entities.FavoritesEntity
@@ -13,6 +18,7 @@ import com.srb.beverages.databinding.FavoriteRecipesRowLayoutBinding
 import com.srb.beverages.ui.fragments.favourites.FavouriteRecipesFragmentDirections
 import com.srb.beverages.utils.RecipesDiffUtil
 import com.srb.beverages.viewmodels.MainViewModel
+import timber.log.Timber
 
 class FavoriteRecipesAdapter(
     private val requireActivity: FragmentActivity,
@@ -54,6 +60,7 @@ class FavoriteRecipesAdapter(
         myViewHolders.add(holder)
         rootView = holder.itemView.rootView
 
+        Log.i("uni",myViewHolders.toString())
         val currentRecipe = favoriteRecipes[position]
         holder.bind(currentRecipe)
 
@@ -62,7 +69,7 @@ class FavoriteRecipesAdapter(
         /**
          * Single Click Listener
          * */
-        holder.binding.favouriteRowCardView.setOnClickListener {
+        holder.binding.favouriteRowLayout.setOnClickListener {
             if (multiSelection) {
                 applySelection(holder, currentRecipe)
             }
@@ -78,9 +85,11 @@ class FavoriteRecipesAdapter(
         /**
          * Long Click Listener
          * */
-        holder.binding.favouriteRowCardView.setOnLongClickListener {
+        holder.binding.favouriteRowLayout.setOnLongClickListener {
             if (!multiSelection) {
                 multiSelection = true
+
+                //for contextual action bar this function is required
                 requireActivity.startActionMode(this)
                 applySelection(holder, currentRecipe)
                 true
@@ -114,7 +123,7 @@ class FavoriteRecipesAdapter(
     }
 
     private fun changeRecipeStyle(holder: MyViewHolder, backgroundColor: Int, strokeColor: Int) {
-        holder.binding.favouriteRowCardView.setBackgroundColor(
+        holder.binding.favouriteRowLayout.setBackgroundColor(
             ContextCompat.getColor(requireActivity, backgroundColor)
         )
         holder.binding.favouriteRowCardView.strokeColor =
@@ -124,7 +133,7 @@ class FavoriteRecipesAdapter(
     private fun applyActionModeTitle() {
         when (selectedRecipes.size) {
             0 -> {
-                mActionMode.finish()
+                mActionMode.finish()                    //when we de-select the item , mActionMode finishes.
                 multiSelection = false
             }
             1 -> {
@@ -154,7 +163,7 @@ class FavoriteRecipesAdapter(
     override fun onActionItemClicked(actionMode: ActionMode?, menu: MenuItem?): Boolean {
         if (menu?.itemId == R.id.delete_favorite_recipe_menu) {
             selectedRecipes.forEach {
-//                mainViewModel.deleteFavoriteRecipe(it)
+                mainViewModel.deleteFavoriteRecipe(it)
             }
             showSnackBar("${selectedRecipes.size} Recipe/s removed.")
 

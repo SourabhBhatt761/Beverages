@@ -41,7 +41,7 @@
             app:layout_constraintTop_toTopOf="@+id/shimmerRv"
             app:layout_constraintVertical_bias="0.37" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/error_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
