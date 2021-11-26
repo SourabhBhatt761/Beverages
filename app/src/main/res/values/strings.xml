@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Beverages</string>
+    <string name="app_name">Gourmet</string>
     <!-- TODO: Remove or change this placeholder text -->
 
     <string name="recipes_fragment">Recipes</string>

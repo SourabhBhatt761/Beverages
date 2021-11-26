@@ -9,6 +9,7 @@
         <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_food_joke_background.xml" value="0.2703125" />
         <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_food_joke_background_dark.xml" value="0.2703125" />
         <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_heart.xml" value="0.2703125" />
+        <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
         <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2703125" />
         <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_splash_screen_.xml" value="0.2703125" />
         <entry key="..\:/Android/Beverages/app/src/main/res/layout-night/fragment_food_joke.xml" value="0.25416666666666665" />
@@ -32,6 +33,8 @@
         <entry key="..\:/Android/Beverages/app/src/main/res/menu/favorites_contextual_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Android/Beverages/app/src/main/res/menu/food_joke_menu.xml" value="0.264" />
         <entry key="..\:/Android/Beverages/app/src/main/res/menu/recipes_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android/Beverages/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14739583333333334" />
+        <entry key="..\:/Android/Beverages/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2703125" />
       </map>
     </option>
   </component>
