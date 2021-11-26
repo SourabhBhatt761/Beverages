@@ -51,5 +51,7 @@
     <color name="bottomNavItemColor">@color/darkGray</color>
     <color name="bottomNavCheckedItemColor">@color/colorPrimary</color>
 
+    // Menu colors
+    <color name="actionBarMenuColor">@color/white</color>
 
 </resources>

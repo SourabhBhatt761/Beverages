@@ -46,5 +46,7 @@
     <color name="bottomNavItemColor">@color/mediumGray</color>
     <color name="bottomNavCheckedItemColor">@color/colorAccent</color>
 
+    // Menu colors
+    <color name="actionBarMenuColor">@color/red</color>
 
 </resources>
