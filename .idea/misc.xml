@@ -5,13 +5,24 @@
       <map>
         <entry key="..\:/Android/Beverages/app/src/main/res/drawable-v24/gradient_overlay.xml" value="0.2703125" />
         <entry key="..\:/Android/Beverages/app/src/main/res/drawable/gradient_overlay.xml" value="0.2703125" />
+        <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_checkmark.xml" value="0.2703125" />
+        <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_clock.xml" value="0.2703125" />
+        <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_delete.xml" value="0.2703125" />
+        <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_error_placeholder.xml" value="0.2703125" />
         <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_food_joke.xml" value="0.2703125" />
         <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_food_joke_background.xml" value="0.2703125" />
         <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_food_joke_background_dark.xml" value="0.2703125" />
         <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_heart.xml" value="0.2703125" />
         <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
         <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2703125" />
+        <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_leaf.xml" value="0.2703125" />
+        <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_menu_book.xml" value="0.2703125" />
+        <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_restaurant.xml" value="0.2703125" />
+        <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_sad.xml" value="0.2703125" />
+        <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_search.xml" value="0.2703125" />
+        <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_share.xml" value="0.2703125" />
         <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_splash_screen_.xml" value="0.2703125" />
+        <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_star.xml" value="0.2703125" />
         <entry key="..\:/Android/Beverages/app/src/main/res/layout-night/fragment_food_joke.xml" value="0.25416666666666665" />
         <entry key="..\:/Android/Beverages/app/src/main/res/layout/activity_details.xml" value="0.25416666666666665" />
         <entry key="..\:/Android/Beverages/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
