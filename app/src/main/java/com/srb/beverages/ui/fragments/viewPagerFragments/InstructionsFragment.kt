@@ -34,6 +34,10 @@ class InstructionsFragment : Fragment() {
             override fun onPageFinished(view: WebView?, url: String?) {
 
                 //use this to show progress bar
+                binding.apply {
+                    progressBar.visibility = View.GONE
+                    instructionsWebView.visibility = View.VISIBLE
+                }
             }
         }
         val websiteUrl: String = myBundle!!.sourceUrl

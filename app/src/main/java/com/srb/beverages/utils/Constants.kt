@@ -2,7 +2,7 @@ package com.srb.beverages.utils
 
 object Constants {
 
-    const val API_KEY = "8212bd2defce4eb9b60dfa5f3dbf26fc"
+    const val API_KEY = "c7a0a3f66aaa45aca1bd1e403953d8c6"
     const val BASE_URL = "https://api.spoonacular.com"
     const val BASE_IMAGE_URL = "https://spoonacular.com/cdn/ingredients_100x100/"
     const val RECIPE_RESULT_KEY = "recipeBundle"

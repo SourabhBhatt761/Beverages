@@ -10,6 +10,8 @@
         <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_food_joke_background_dark.xml" value="0.2703125" />
         <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_heart.xml" value="0.2703125" />
         <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2703125" />
+        <entry key="..\:/Android/Beverages/app/src/main/res/drawable/ic_splash_screen_.xml" value="0.2703125" />
+        <entry key="..\:/Android/Beverages/app/src/main/res/layout-night/fragment_food_joke.xml" value="0.25416666666666665" />
         <entry key="..\:/Android/Beverages/app/src/main/res/layout/activity_details.xml" value="0.25416666666666665" />
         <entry key="..\:/Android/Beverages/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Android/Beverages/app/src/main/res/layout/favorite_recipes_row_layout.xml" value="0.536" />
@@ -28,6 +30,7 @@
         <entry key="..\:/Android/Beverages/app/src/main/res/menu/details_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Android/Beverages/app/src/main/res/menu/favorite_recipes_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Android/Beverages/app/src/main/res/menu/favorites_contextual_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android/Beverages/app/src/main/res/menu/food_joke_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Android/Beverages/app/src/main/res/menu/recipes_menu.xml" value="0.25416666666666665" />
       </map>
     </option>

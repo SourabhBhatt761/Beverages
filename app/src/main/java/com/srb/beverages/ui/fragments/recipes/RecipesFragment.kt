@@ -25,6 +25,12 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import com.google.android.material.behavior.HideBottomViewOnScrollBehavior
+
+import android.view.ViewGroup
+
+
+
 
 @AndroidEntryPoint
 class RecipesFragment : Fragment(),SearchView.OnQueryTextListener {
