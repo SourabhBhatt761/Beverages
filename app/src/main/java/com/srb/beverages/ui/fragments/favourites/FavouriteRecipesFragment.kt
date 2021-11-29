@@ -1,11 +1,13 @@
 package com.srb.beverages.ui.fragments.favourites
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.srb.beverages.R
 import com.srb.beverages.adapters.FavoriteRecipesAdapter
@@ -45,10 +47,28 @@ class FavouriteRecipesFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.deleteAll_favorite_recipes_menu){
-            mainViewModel.deleteAllFavoriteRecipes()
-            showSnackBar()
+
+            deleteConfirmationDialogBox()
+
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun deleteConfirmationDialogBox() {
+
+             MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Deleting all messages ")
+            .setMessage("Are you sure you want to delete all recipes?")
+            .setPositiveButton("Yes") { _, _ ->
+                mainViewModel.deleteAllFavoriteRecipes()
+                showSnackBar()
+            }
+            .setNegativeButton("Cancel"){ _,_ ->
+
+            }
+                 .show()
+
+
     }
 
     private fun setupRecyclerView(recyclerView: RecyclerView) {
