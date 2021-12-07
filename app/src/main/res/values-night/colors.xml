@@ -43,10 +43,11 @@
 
     // Custom BottomNavigationView Style
     <color name="bottomNavBackground">@color/darker</color>
-    <color name="bottomNavItemColor">@color/mediumGray</color>
-    <color name="bottomNavCheckedItemColor">@color/colorAccent</color>
+    <color name="bottomNavItemColor">@color/darkGray</color>
+    <color name="bottomNavCheckedItemColor">#669EC8</color>
 
     // Menu colors
     <color name="actionBarMenuColor">@color/red</color>
+    <color name="recipesBgColor">@color/black</color>
 
 </resources>

@@ -41,17 +41,20 @@
     <color name="titleColor">@color/darker</color>
     <color name="descriptionColor">@color/darkGray</color>
 
-    <color name="statusBarColor">@color/colorPrimaryDark</color>
+    <color name="statusBarColor">#22577E</color>
+<!--    <color name="statusBarColor">@color/colorPrimaryDark</color>-->
     <color name="contextualStatusBarColor">@color/darker</color>
     <color name="contextualActionBarColor">@color/dark</color>
-    <color name="actionBarBackgroundColor">@color/colorPrimary</color>
+    <color name="actionBarBackgroundColor">#22577E</color>
+<!--    <color name="actionBarBackgroundColor">@color/colorPrimary</color>-->
 
     // Custom BottomNavigationView Style
-    <color name="bottomNavBackground">@color/white</color>
+    <color name="bottomNavBackground">#fafafa</color>
     <color name="bottomNavItemColor">@color/darkGray</color>
-    <color name="bottomNavCheckedItemColor">@color/colorPrimary</color>
+    <color name="bottomNavCheckedItemColor">#2D658E</color>
 
     // Menu colors
     <color name="actionBarMenuColor">@color/white</color>
+    <color name="recipesBgColor">#F8F8F8</color>
 
 </resources>

@@ -12,6 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/recipesBgColor"
         tools:context=".ui.fragments.recipes.RecipesFragment">
 
         <com.todkars.shimmer.ShimmerRecyclerView
@@ -64,6 +65,8 @@
             android:layout_marginBottom="18dp"
             android:clickable="true"
             android:focusable="true"
+            app:backgroundTint="#00917C"
+            app:borderWidth="0dp"
             android:src="@drawable/ic_restaurant"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
