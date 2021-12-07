@@ -1,6 +1,8 @@
 package com.srb.beverages.ui.fragments.recipes
 
+import android.content.res.Resources
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
@@ -127,6 +129,7 @@ class RecipesFragment : Fragment(),SearchView.OnQueryTextListener {
         val searchView = search.actionView as? SearchView
         searchView?.isSubmitButtonEnabled = true
         searchView?.setOnQueryTextListener(this)
+        searchView?.maxWidth = (Resources.getSystem().displayMetrics.widthPixels / 1.4).toInt()
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
