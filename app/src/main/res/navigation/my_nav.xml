@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/recipesFragment"
-        android:name="com.srb.beverages.ui.fragments.recipes.RecipesFragment"
+        android:name="com.srb.gourmet.ui.fragments.recipes.RecipesFragment"
         android:label="Recipes"
         tools:layout="@layout/fragment_recipes" >
         <action
@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/favouriteRecipesFragment"
-        android:name="com.srb.beverages.ui.fragments.favourites.FavouriteRecipesFragment"
+        android:name="com.srb.gourmet.ui.fragments.favourites.FavouriteRecipesFragment"
         android:label="Favourite"
         tools:layout="@layout/fragment_favourite_recipes" >
         <action
@@ -32,12 +32,12 @@
     </fragment>
     <fragment
         android:id="@+id/foodJokeFragment"
-        android:name="com.srb.beverages.ui.fragments.joke.FoodJokeFragment"
+        android:name="com.srb.gourmet.ui.fragments.joke.FoodJokeFragment"
         android:label="Joke"
         tools:layout="@layout/fragment_food_joke" />
     <dialog
         android:id="@+id/recipesBottomSheet"
-        android:name="com.srb.beverages.ui.fragments.recipes.RecipesBottomSheetFragment"
+        android:name="com.srb.gourmet.ui.fragments.recipes.RecipesBottomSheetFragment"
         android:label="RecipesBottomSheet" >
         <action
             android:id="@+id/action_recipesBottomSheet_to_recipesFragment"
@@ -47,12 +47,12 @@
     </dialog>
     <activity
         android:id="@+id/detailsActivity"
-        android:name="com.srb.beverages.ui.activities.DetailsActivity"
+        android:name="com.srb.gourmet.ui.activities.DetailsActivity"
         android:label="Details"
         tools:layout="@layout/activity_details" >
         <argument
             android:name="result"
-            app:argType="com.srb.beverages.data.network.models.Result"
+            app:argType="com.srb.gourmet.data.network.models.Result"
             app:nullable="true"
             android:defaultValue="@null" />
 

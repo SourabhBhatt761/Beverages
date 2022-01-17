@@ -257,7 +257,7 @@
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="24dp"
             android:text="@string/apply"
-            android:backgroundTint="@color/purple_500"
+            android:backgroundTint="#22577E"
             android:textColor="@color/white"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -6,7 +6,7 @@
     <data>
     <variable
         name="mainViewModel"
-        type="com.srb.beverages.viewmodels.MainViewModel" />
+        type="com.srb.gourmet.viewmodels.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

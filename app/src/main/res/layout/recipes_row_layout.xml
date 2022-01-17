@@ -7,7 +7,7 @@
 
         <variable
             name="result"
-            type="com.srb.beverages.data.network.models.Result" />
+            type="com.srb.gourmet.data.network.models.Result" />
     </data>
 
 

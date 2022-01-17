@@ -7,11 +7,11 @@
 
         <variable
             name="mainViewModel"
-            type="com.srb.beverages.viewmodels.MainViewModel" />
+            type="com.srb.gourmet.viewmodels.MainViewModel" />
 
         <variable
             name="mAdapter"
-            type="com.srb.beverages.adapters.FavoriteRecipesAdapter" />
+            type="com.srb.gourmet.adapters.FavoriteRecipesAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
